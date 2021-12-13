@@ -1,0 +1,47 @@
+<Project>
+
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <dotnetCampus_LargeAddressAware_Root>$(MSBuildThisFileDirectory)..\</dotnetCampus_LargeAddressAware_Root>
+    <dotnetCampus_LargeAddressAware_EditBin>$(dotnetCampus_LargeAddressAware_Root)tools\EditBin\editbin.exe</dotnetCampus_LargeAddressAware_EditBin>
+  </PropertyGroup>
+
+  <Target Name="dotnetCampus_LargeAddressAware_PrepareProperties">
+    <PropertyGroup>
+      <dotnetCampus_LargeAddressAware_ShouldEditBin Condition="
+                                                    $(LargeAddressAware) == true
+                                                    And $(DesignTimeBuild) != true
+                                                    And ($(OutputType) == Exe Or $(OutputType) == WinExe)
+                                                    And $(PlatformTarget) == x86
+                                                    ">true</dotnetCampus_LargeAddressAware_ShouldEditBin>
+      <dotnetCampus_LargeAddressAware_ShouldEditBin Condition=" '$(dotnetCampus_LargeAddressAware_ShouldEditBin)' == '' ">false</dotnetCampus_LargeAddressAware_ShouldEditBin>
+      <dotnetCampus_LargeAddressAware_FinalExeFile Condition="$(UseAppHost) == true">$(AppHostIntermediatePath)</dotnetCampus_LargeAddressAware_FinalExeFile>
+      <dotnetCampus_LargeAddressAware_FinalExeFile Condition="$(UseAppHost) != true">@(IntermediateAssembly)</dotnetCampus_LargeAddressAware_FinalExeFile>
+    </PropertyGroup>
+    <Warning Condition=" $(OutputType) != Exe And $(OutputType) != WinExe " Text="生成的程序不是 exe，因此无法开启大内存感知（LargeAddressAware）。" />
+    <Message Importance="high" Condition=" $(PlatformTarget) == x86 " Text="生成的程序不是 x86 架构，因此无需开启大内存感知（LargeAddressAware）。" />
+    <Message Condition=" $(LargeAddressAware) != true " Text="已通过 LargeAddressAware 属性禁用了 x86 应用程序的大内存感知（LargeAddressAware）。" />
+  </Target>
+
+  <Target Name="dotnetCampus_LargeAddressAware_EditBin"
+          DependsOnTargets="dotnetCampus_LargeAddressAware_PrepareProperties">
+    <Error Condition=" $(dotnetCampus_LargeAddressAware_ShouldEditBin)
+           And !Exists('$(dotnetCampus_LargeAddressAware_FinalExeFile)') "
+           Text="无法开启大内存感知（LargeAddressAware），因为文件“$(dotnetCampus_LargeAddressAware_FinalExeFile)”不存在。" />
+    <Exec Condition=" $(dotnetCampus_LargeAddressAware_ShouldEditBin) == true "
+          Command="$(dotnetCampus_LargeAddressAware_EditBin) /largeaddressaware &quot;$(dotnetCampus_LargeAddressAware_FinalExeFile)&quot;" />
+  </Target>
+
+  <!-- .NET Core 的大内存感知 -->
+  <Target Name="dotnetCampus_LargeAddressAware_EditAppHost"
+          AfterTargets="_CreateAppHost">
+    <CallTarget Condition="$(UseAppHost) == true" Targets="dotnetCampus_LargeAddressAware_EditBin" />
+  </Target>
+
+  <!-- .NET Framework 的大内存感知 -->
+  <Target Name="dotnetCampus_LargeAddressAware_EditAssemblyFile"
+          AfterTargets="CoreCompile">
+    <CallTarget Condition="$(UseAppHost) != true" Targets="dotnetCampus_LargeAddressAware_EditBin" />
+  </Target>
+
+</Project>
