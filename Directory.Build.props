@@ -5,7 +5,6 @@
     <PackageOutputPath>$(MSBuildThisFileDirectory)bin\$(Configuration)</PackageOutputPath>
     <Company>dotnet campus（.NET 职业技术学院）</Company>
 
-    <!-- 替换下面信息 -->
     <Authors>dotnet-campus</Authors>
     <RepositoryUrl>https://github.com/dotnet-campus/dotnetCampus.LargeAddressAware</RepositoryUrl>
     <PackageProjectUrl>https://github.com/dotnet-campus/dotnetCampus.LargeAddressAware</PackageProjectUrl>
