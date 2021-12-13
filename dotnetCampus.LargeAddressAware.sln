@@ -16,7 +16,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		build\Version.props = build\Version.props
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnetCampus.LargeAddressAware.Sample", "samples\dotnetCampus.LargeAddressAware.Sample\dotnetCampus.LargeAddressAware.Sample.csproj", "{866AA27F-5C03-47CD-A7FF-0CCD91A0E722}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnetCampus.LargeAddressAware.Sample", "samples\dotnetCampus.LargeAddressAware.Sample\dotnetCampus.LargeAddressAware.Sample.csproj", "{866AA27F-5C03-47CD-A7FF-0CCD91A0E722}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{327603CF-14C8-4CFD-8EC6-3DB93195A0EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{866AA27F-5C03-47CD-A7FF-0CCD91A0E722} = {327603CF-14C8-4CFD-8EC6-3DB93195A0EC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D5CD64F2-E3D6-4B45-A6B6-5CA19C8AD681}
