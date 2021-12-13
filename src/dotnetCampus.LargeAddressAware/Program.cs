@@ -1,8 +1,10 @@
-﻿namespace dotnetCampus.LargeAddressAware;
-
-internal static class Program
+﻿namespace dotnetCampus.LargeAddressAware
 {
-    private static void Main()
+    internal static class Program
     {
+        private static void Main()
+        {
+
+        }
     }
 }
