@@ -1,12 +1,11 @@
 ﻿using System;
 
-namespace dotnetCampus.LargeAddressAware.Sample
+namespace dotnetCampus.LargeAddressAware.Sample;
+
+internal class Program
 {
-    internal class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
-        }
+        Console.WriteLine("Hello World!");
     }
 }
