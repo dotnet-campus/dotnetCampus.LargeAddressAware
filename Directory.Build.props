@@ -1,0 +1,17 @@
+<Project>
+  <Import Project="build\Version.props" />
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <PackageOutputPath>$(MSBuildThisFileDirectory)bin\$(Configuration)</PackageOutputPath>
+    <Company>dotnet campus（.NET 职业技术学院）</Company>
+
+    <!-- 替换下面信息 -->
+    <Authors>dotnet-campus</Authors>
+    <RepositoryUrl>https://github.com/dotnet-campus/dotnetCampus.LargeAddressAware</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/dotnet-campus/dotnetCampus.LargeAddressAware</PackageProjectUrl>
+    <Description>The dotnetCampus.LargeAddressAware is a MSBuild task to edit the final 32-bit application so that it can handle addresses larger than 2 gigabytes. In a 64-bit application, this is enabled by default.</Description>
+
+    <RepositoryType>git</RepositoryType>
+    <Copyright>Copyright © 2021 dotnet campus, All Rights Reserved.</Copyright>
+  </PropertyGroup>
+</Project>

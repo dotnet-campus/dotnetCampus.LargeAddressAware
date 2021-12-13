@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\src\dotnetCampus.LargeAddressAware\Assets\build\PackageId.props" />
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+
+  <Import Project="..\..\src\dotnetCampus.LargeAddressAware\Assets\build\PackageId.targets" />
+
+</Project>
